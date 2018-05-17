@@ -8,44 +8,50 @@
 import React from 'react'
 import {
   StyleSheet,
-  Text,
   View,
-  Button,
 } from 'react-native'
+import {
+  Text,
+  Button,
+} from 'react-native-elements'
 
 export default class Counter extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      counter: 0,
-    }
-  }
-
-  increment = () => {
-    const newCounter = this.state.counter + 1
-    this.setState({ counter: newCounter })
-  }
-
-  decrement = () => {
-    const newCounter = this.state.counter - 1
-    this.setState({ counter: newCounter })
-  }
-
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <View style={styles.container}>
-        <Text>{ this.props.value }</Text>
+        <Text
+          h1
+          style={{
+            marginBottom: 20,
+          }}
+        >{ this.props.value }</Text>
         <Button
           onPress={ this.props.onIncrement }
-          title="INCREMENT"
-          color="#841584"
+          title='INCREMENT'
+          color='white'
+          buttonStyle={{
+            backgroundColor: 'rgba(92, 99,216, 1)',
+            width: 300,
+            height: 45,
+            borderColor: 'transparent',
+            borderWidth: 0,
+            borderRadius: 5,
+            marginBottom: 20,
+          }}
         />
         <Button
           onPress={ this.props.onDecrement }
-          title="DECREMENT"
-          color="#841583"
+          title='DECREMENT'
+          color='#841583'
+          buttonStyle={{
+            backgroundColor: 'rgba(92, 99,216, 1)',
+            width: 300,
+            height: 45,
+            borderColor: 'transparent',
+            borderWidth: 0,
+            borderRadius: 5
+          }}
         />
       </View>
     )

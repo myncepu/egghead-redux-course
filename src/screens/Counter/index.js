@@ -13,7 +13,7 @@ import {
 import { connect } from 'react-redux'
 
 import Counter from './Counter'
-import { store } from './store'
+import { increment, decrement } from './actions'
 
 class CounterScreen extends React.Component {
   constructor(props) {
@@ -25,23 +25,12 @@ class CounterScreen extends React.Component {
   }
 
   render() {
-    // const store = createStore(reducer)
-    // console.log(store)
-
     return (
       <View style={styles.container}>
         <Counter
-          value={ store.getState() }
-          onIncrement={() => {
-            store.dispatch({
-              type: 'INCREMENT',
-            })
-          }}
-          onDecrement={() => {
-            store.dispatch({
-              type: 'DECREMENT',
-            })
-          }}
+          value={ this.props.counter }
+          onIncrement={ this.props.dispatchIncrement }
+          onDecrement={ this.props.dispatchDecrement }
         />
       </View>
     )
@@ -64,15 +53,14 @@ function mapStateToProps (state) {
   }
 }
 
-// function mapDispatchToProps (dispatch) {
-//   console.log('dispatch', dispatch)
-//   return {
-//     // dispatchAddPerson: (person) => dispatch(addPerson(person)),
-//     // dispatchdeletePerson: (person) => dispatch(deletePerson(person))
-//   }
-// }
+function mapDispatchToProps (dispatch) {
+  return {
+    dispatchIncrement: () => dispatch(increment),
+    dispatchDecrement: () => dispatch(decrement),
+  }
+}
 
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps
+  mapDispatchToProps
 )(CounterScreen)
